@@ -20,9 +20,10 @@ NoMoney learns from your income and spending patterns to provide visual reports,
 
 - **Alibaba Model Studio**
 - **Qwen Large Language Model**
+- **Alibaba Cloud ECS**
+- **Alibaba ApsaraDB**
 - **OCR (Optical Character Recognition)**
-- **Cross-platform Frontend (Flutter / React Native / etc.)**
-- **Secure Cloud Storage**
+- **Flutter Flow / Node.js**
 
 ## 🛡️ Privacy First
 Your financial data stays yours. We ensure bank-grade encryption and follow best practices to protect your privacy.
