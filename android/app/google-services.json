@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "217826000792",
+    "project_id": "financial-9x3na9",
+    "storage_bucket": "financial-9x3na9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217826000792:android:4379925dd2601a31ea75ed",
+        "android_client_info": {
+          "package_name": "com.mycompany.financial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217826000792-41b6m5c0mv3er9e779bi983081lim89k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.financial",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "217826000792-pf6o3gq809jvcofe76gumfpre2jder4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvrjnB7UAaQsyNd1BsAG1rUlLKXDcYej8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217826000792-pf6o3gq809jvcofe76gumfpre2jder4b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "217826000792-cjpcoud3ms6qpp43ms7164faupjqa4vk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.financial"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
