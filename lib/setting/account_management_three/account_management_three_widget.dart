@@ -37,6 +37,8 @@ class _AccountManagementThreeWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => AccountManagementThreeModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

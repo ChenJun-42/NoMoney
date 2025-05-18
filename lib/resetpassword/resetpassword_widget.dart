@@ -38,6 +38,8 @@ class _ResetpasswordWidgetState extends State<ResetpasswordWidget> {
 
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

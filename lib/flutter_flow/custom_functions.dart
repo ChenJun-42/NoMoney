@@ -8,6 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
+import '/backend/supabase/supabase.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 String? calculationPersentage(

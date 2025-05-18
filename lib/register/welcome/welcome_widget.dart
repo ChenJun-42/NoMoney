@@ -60,6 +60,18 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
       'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation3': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
           VisibilityEffect(duration: 630.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -146,12 +158,30 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                               .fontStyle,
                         ),
                         color: Colors.white,
+                        fontSize: 30.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                         fontStyle:
                             FlutterFlowTheme.of(context).displaySmall.fontStyle,
                       ),
                 ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
+                Text(
+                  'NoMoney',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).displaySmall.override(
+                        font: GoogleFonts.interTight(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .fontStyle,
+                        ),
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).displaySmall.fontStyle,
+                      ),
+                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation2']!),
                 Align(
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Text(
@@ -175,7 +205,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                               .fontStyle,
                         ),
                   ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation2']!),
+                      animationsMap['textOnPageLoadAnimation3']!),
                 ),
                 Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,

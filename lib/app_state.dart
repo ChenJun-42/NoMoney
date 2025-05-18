@@ -19,6 +19,18 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _UserId = prefs.getInt('ff_UserId') ?? _UserId;
     });
+    _safeInit(() {
+      _amount = prefs.getDouble('ff_amount') ?? _amount;
+    });
+    _safeInit(() {
+      _shopName = prefs.getString('ff_shopName') ?? _shopName;
+    });
+    _safeInit(() {
+      _paymentDate = prefs.getString('ff_paymentDate') ?? _paymentDate;
+    });
+    _safeInit(() {
+      _paymentTime = prefs.getString('ff_paymentTime') ?? _paymentTime;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -33,6 +45,34 @@ class FFAppState extends ChangeNotifier {
   set UserId(int value) {
     _UserId = value;
     prefs.setInt('ff_UserId', value);
+  }
+
+  double _amount = 0.0;
+  double get amount => _amount;
+  set amount(double value) {
+    _amount = value;
+    prefs.setDouble('ff_amount', value);
+  }
+
+  String _shopName = '';
+  String get shopName => _shopName;
+  set shopName(String value) {
+    _shopName = value;
+    prefs.setString('ff_shopName', value);
+  }
+
+  String _paymentDate = '';
+  String get paymentDate => _paymentDate;
+  set paymentDate(String value) {
+    _paymentDate = value;
+    prefs.setString('ff_paymentDate', value);
+  }
+
+  String _paymentTime = '';
+  String get paymentTime => _paymentTime;
+  set paymentTime(String value) {
+    _paymentTime = value;
+    prefs.setString('ff_paymentTime', value);
   }
 }
 

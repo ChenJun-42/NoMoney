@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'register_widget.dart' show RegisterWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterModel extends FlutterFlowModel<RegisterWidget> {
   ///  State fields for stateful widgets in this page.
@@ -18,7 +17,6 @@ class RegisterModel extends FlutterFlowModel<RegisterWidget> {
   // State field(s) for phoneNumber widget.
   FocusNode? phoneNumberFocusNode;
   TextEditingController? phoneNumberTextController;
-  final phoneNumberMask = MaskTextInputFormatter(mask: ' +60 #-### ####');
   String? Function(BuildContext, String?)? phoneNumberTextControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode1;

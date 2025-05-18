@@ -23,3 +23,4 @@ export '/bookkeeping_expanse/bookkeeping_expanse_widget.dart'
     show BookkeepingExpanseWidget;
 export '/bookkeeping_income/bookkeeping_income_widget.dart'
     show BookkeepingIncomeWidget;
+export '/chatbot/chatbot_widget.dart' show ChatbotWidget;

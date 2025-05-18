@@ -60,6 +60,7 @@ class _PrivacySecurityThreeWidgetState
     _model.switchValue6 = false;
     _model.switchValue7 = true;
     _model.switchValue8 = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

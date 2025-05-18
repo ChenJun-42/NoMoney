@@ -17,6 +17,7 @@ class RegisterCall {
     double? income,
     double? target,
     double? budget,
+    double? balance,
   }) async {
     final ffApiRequestBody = '''
 {
@@ -26,7 +27,8 @@ class RegisterCall {
   "password": "${escapeStringForJson(password)}",
   "income": ${income},
   "target": ${target},
-  "budget": ${budget}
+  "budget": ${budget},
+  "balance": ${balance}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'register',
@@ -58,7 +60,7 @@ class LoginCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
-      apiUrl: 'http://47.250.93.90:3000/api/login',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/login',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -91,7 +93,7 @@ class ForgetPasswordCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'forget password',
-      apiUrl: 'http://47.250.93.90:3000/api/forget_password',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/forget_password',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -119,7 +121,7 @@ class ResetPasswordCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'reset password',
-      apiUrl: 'http://47.250.93.90:3000/api/reset_password/${otp}',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/reset_password/${otp}',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -150,13 +152,14 @@ class ChangeInformationCall {
   "password": "${escapeStringForJson(password)}",
   "language": "${escapeStringForJson(language)}",
   "currency": "${escapeStringForJson(currency)}",
-  "display_color": "${escapeStringForJson(displayColor)}",
+  "display_color": "\${switchValue ? 'dark' : 'light'}",
   "income": ${income},
   "monthly_saving_target": ${monthlySavingTarget}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'change information',
-      apiUrl: 'http://47.250.93.90:3000/api/user/${userId}/change_information',
+      apiUrl:
+          'https://nomoneyalibaba.duckdns.org/api/setting/user/${userId}/change_information',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -180,7 +183,7 @@ class UserDetailsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'user details',
-      apiUrl: 'http://47.250.93.90:3000/api/user/${id}',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/user/${id}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -242,11 +245,21 @@ class UserDetailsCall {
         response,
         r'''$.budget_overview.period''',
       ));
+  static List<int>? budgetAmount(dynamic response) => (getJsonField(
+        response,
+        r'''$.budget_overview[:].amount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ChatbotCall {
   static Future<ApiCallResponse> call({
     String? question = '',
+    String? userId = '',
   }) async {
     final ffApiRequestBody = '''
 {
@@ -254,7 +267,8 @@ class ChatbotCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'chatbot',
-      apiUrl: 'http://47.250.93.90:3000/api/chatbot',
+      apiUrl:
+          'https://nomoneyalibaba.duckdns.org/api/chatbot/user/${userId}/message',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -282,7 +296,79 @@ class OcrCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'OCR',
-      apiUrl: 'http://47.250.93.90:3000/api/receipt/extract',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/receipt/extract',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static double? value(dynamic response) => castToType<double>(getJsonField(
+        response,
+        r'''$.data[:].value''',
+      ));
+  static String? paymentMethod(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.data[:].payment_method''',
+      ));
+  static String? paymentDate(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.data[:].payment_date''',
+      ));
+  static dynamic shopName(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].shop_name''',
+      );
+  static String? category(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data[:].category''',
+      ));
+  static String? paymentTime(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.data[:].payment_time''',
+      ));
+}
+
+class SaveTransactionCall {
+  static Future<ApiCallResponse> call({
+    String? shopName = '',
+    double? value,
+    String? catagory = '',
+    String? paymentMethod = '',
+    String? paymentDate = '',
+    int? userId,
+    String? note = '',
+    String? paymentTime = '',
+    String? transactionCategory = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "user_id": "${userId}",
+  "shop_name": "${escapeStringForJson(shopName)}",
+  "value": "${value}",
+  "category": "${escapeStringForJson(catagory)}",
+  "payment_method": "${escapeStringForJson(paymentMethod)}",
+  "payment_date": "${escapeStringForJson(paymentDate)}",
+  "payment_time": "${escapeStringForJson(paymentTime)}",
+  "note": "${escapeStringForJson(note)}",
+  "transaction_category": "${escapeStringForJson(transactionCategory)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'save transaction',
+      apiUrl: 'https://nomoneyalibaba.duckdns.org/api/receipt/${userId}/save',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -300,28 +386,25 @@ class OcrCall {
   }
 }
 
-class SaveReceiptCall {
+class SetBudgetCall {
   static Future<ApiCallResponse> call({
-    String? shopName = '',
-    double? value,
-    String? catagory = '',
-    String? paymentMethod = '',
-    String? paymentDate = '',
+    int? amount,
+    String? period = '',
+    int? userId,
   }) async {
     final ffApiRequestBody = '''
 {
-  "shop_name": "${escapeStringForJson(shopName)}",
-  "value": ${value},
-  "category": "${escapeStringForJson(catagory)}",
-  "payment_method": "${escapeStringForJson(paymentMethod)}",
-  "payment_date": "${escapeStringForJson(paymentDate)}"
+  "user_id": "${userId}",
+  "amount": "${amount}",
+  "period": "${escapeStringForJson(period)}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'save receipt',
-      apiUrl: 'http://47.250.93.90:3000/api/receipt/save',
+      callName: 'Set Budget',
+      apiUrl:
+          'https://nomoneyalibaba.duckdns.org/api/set_budget/user/${userId}',
       callType: ApiCallType.POST,
       headers: {
-        '\tContent-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
       params: {},
       body: ffApiRequestBody,

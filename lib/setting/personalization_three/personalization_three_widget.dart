@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'personalization_three_model.dart';
 export 'personalization_three_model.dart';
 
@@ -41,6 +43,7 @@ class _PersonalizationThreeWidgetState
     _model = createModel(context, () => PersonalizationThreeModel());
 
     _model.switchValue = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -52,6 +55,8 @@ class _PersonalizationThreeWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -174,6 +179,15 @@ class _PersonalizationThreeWidgetState
                         value: _model.switchValue!,
                         onChanged: (newValue) async {
                           safeSetState(() => _model.switchValue = newValue);
+                          if (newValue) {
+                            _model.apiResultq5a =
+                                await ChangeInformationCall.call(
+                              userId: FFAppState().UserId,
+                              displayColor: _model.switchValue?.toString(),
+                            );
+
+                            safeSetState(() {});
+                          }
                         },
                         activeColor: FlutterFlowTheme.of(context).primary,
                         activeTrackColor: FlutterFlowTheme.of(context).accent1,

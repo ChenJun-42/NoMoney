@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'analysis_model.dart';
@@ -70,6 +71,8 @@ class _AnalysisWidgetState extends State<AnalysisWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -89,19 +92,21 @@ class _AnalysisWidgetState extends State<AnalysisWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        floatingActionButton: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
-          child: FloatingActionButton(
-            onPressed: () {
-              print('FloatingActionButton pressed ...');
-            },
-            backgroundColor: Color(0xFF3963D2),
-            elevation: 3.0,
-            child: Icon(
-              Icons.question_answer_rounded,
-              color: Colors.white,
-              size: 24.0,
-            ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () async {
+            context.pushNamed(ChatbotWidget.routeName);
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          label: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                Icons.chat,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ],
           ),
         ),
         body: SafeArea(
@@ -223,6 +228,15 @@ class _AnalysisWidgetState extends State<AnalysisWidget> {
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://www.goskills.com/blobs/blogs/569/originals/44144eee-b52a-4c9e-b198-88b76d8237c2_lossy.webp',
+                                  width: 200.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Row(
@@ -504,10 +518,19 @@ class _AnalysisWidgetState extends State<AnalysisWidget> {
                               isMultiSelect: false,
                             ),
                             Container(
-                              width: 390.55,
+                              width: 390.5,
                               height: 200.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://trumpexcel.com/wp-content/uploads/2019/05/Excel-Pie-Chart-Example.png',
+                                  width: 200.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Row(
@@ -1125,6 +1148,15 @@ class _AnalysisWidgetState extends State<AnalysisWidget> {
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://www.datocms-assets.com/42764/1664971375-population_pyramid_for_the_united_kingdom_using_2011_census_data.png',
+                                  width: 200.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Row(

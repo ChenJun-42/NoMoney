@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register_model.dart';
@@ -115,6 +116,8 @@ class _RegisterWidgetState extends State<RegisterWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -177,7 +180,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
                               'https://picsum.photos/seed/708/600',
-                              width: 308.92,
+                              width: 308.9,
                               height: 200.0,
                               fit: BoxFit.cover,
                             ),
@@ -429,7 +432,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                         textCapitalization: TextCapitalization.none,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: ' +60 1X-XXX-XXXX',
+                          labelText: ' phoneNumber',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.plusJakartaSans(
@@ -497,7 +500,17 @@ class _RegisterWidgetState extends State<RegisterWidget>
                         keyboardType: TextInputType.phone,
                         validator: _model.phoneNumberTextControllerValidator
                             .asValidator(context),
-                        inputFormatters: [_model.phoneNumberMask],
+                        inputFormatters: [
+                          if (!isAndroid && !isiOS)
+                            TextInputFormatter.withFunction(
+                                (oldValue, newValue) {
+                              return TextEditingValue(
+                                selection: newValue.selection,
+                                text: newValue.text
+                                    .toCapitalization(TextCapitalization.none),
+                              );
+                            }),
+                        ],
                       ),
                     ),
                     Padding(

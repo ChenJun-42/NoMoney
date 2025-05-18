@@ -39,6 +39,7 @@ class _DataManagementThreeWidgetState extends State<DataManagementThreeWidget> {
     _model.switchValue1 = true;
     _model.switchValue2 = true;
     _model.switchValue3 = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

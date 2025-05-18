@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'personalization_three_widget.dart' show PersonalizationThreeWidget;
@@ -9,6 +10,8 @@ class PersonalizationThreeModel
 
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Backend Call - API (change information)] action in Switch widget.
+  ApiCallResponse? apiResultq5a;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>

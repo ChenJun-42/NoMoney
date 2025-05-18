@@ -1,22 +1,17 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
-import '/index.dart';
-import 'analysis_widget.dart' show AnalysisWidget;
+import 'chatbot_widget.dart' show ChatbotWidget;
 import 'package:flutter/material.dart';
 
-class AnalysisModel extends FlutterFlowModel<AnalysisWidget> {
+class ChatbotModel extends FlutterFlowModel<ChatbotWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Backend Call - API (chatbot)] action in Button widget.
+  ApiCallResponse? apiResult6yj;
 
   @override
   void initState(BuildContext context) {}

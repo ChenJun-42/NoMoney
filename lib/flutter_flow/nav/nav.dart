@@ -190,6 +190,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Bookkeeping-income')
               : BookkeepingIncomeWidget(),
+        ),
+        FFRoute(
+          name: ChatbotWidget.routeName,
+          path: ChatbotWidget.routePath,
+          builder: (context, params) => ChatbotWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
