@@ -7,7 +7,7 @@
 ### 🧠 AI Financial Assistant - *NoMoney Bot*
 Meet **NoMoney Bot**, your smart finance advisor. Built on Qwen and Alibaba’s large language models, it analyzes your financial behavior and offers personalized recommendations to help you make smarter money decisions.
 
-### 📸 Intelligent Receipt Scanning (OCR + LLM)
+### 📸 Intelligent Receipt Scanning (OCR + Qwen)
 Say goodbye to manual data entry. With powerful OCR and AI integration, NoMoney automatically scans, reads, and categorizes receipts, turning paper clutter into clean digital records.
 
 ### 💼 Smart Budgeting
